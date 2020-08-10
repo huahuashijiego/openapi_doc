@@ -271,7 +271,7 @@ line_num|是|string|线路号码|如果是多个，分号分隔
 robot_id|是|string|话术id|
 recall_count|否|int|重试外呼次数|最大3次，默认0
 time_recall_wait|否|long|重试等待时间|单位秒
-time_range|否|string[]|外呼时间段|
+time_range|是|string[]|外呼时间段，例如:timeRange: ["09:00:00-12:00:00", "13:30:00-20:00:00"]|注意该时间需要在企业允许的工作时间之内
 time_begin|是|long|任务开始时间|毫秒时间戳
 time_end|否|long|任务结束时间|毫秒时间戳
 voice_code|否|string|发音人编码|
