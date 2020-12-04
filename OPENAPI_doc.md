@@ -474,12 +474,13 @@ page_size|否|int|页大小|最大值50，默认20
 page_index|否|int|当前页码|从1开始
 sort_name|否|string|排序字段|ID：任务编号，NAME：任务名称，CREATETIME：任务创建时间，STARTTIME：任务开始时间，ENDTIME：任务结束时间
 sort_order|否|string|排序字段方式|"ASC" 正序 "DESC" 倒序
-
+show_remaining|否|boolean|任务运行时,该值为正在处理的数量|
 
 ### 请求示例
 ~~~
 {
-  "time_begin": 153000000
+  "time_begin": 153000000,
+  "show_remaining":true
 }
 ~~~
 
@@ -518,6 +519,7 @@ sort_order|否|string|排序字段方式|"ASC" 正序 "DESC" 倒序
                 "process_tel_count":7,
                 "process_through_count":4,
                 "process_through_rate":1
+                "remaining":12
             }
         ]
     }
