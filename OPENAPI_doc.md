@@ -103,11 +103,15 @@ time_expire|是|long|有效期|单位：秒。默认3600。
 名称|必填|类型|说明
 ---|:-:|:-:|:-:
 type|否|int|配置项分类。1：话术，2：线路，3：接口，4：发音人，0：全部（默认）。
+pageSize|否|int|分页大小
+pageIndex|否|int|页码
 
 ### 请求示例
 ~~~
 {
-   "type": 0
+   "type": 1,
+   "pageSize":10,
+   "pageIndex":1
 }
 ~~~
 
@@ -135,6 +139,7 @@ type|否|int|配置项分类。1：话术，2：线路，3：接口，4：发音
                "time_expire": 2592000
            }
        ],
+       "robotTotal":123
        "robots": [
            {
                "robot_id": "111111",
@@ -175,6 +180,7 @@ time_work|string[]|工作时段|
 status|int|状态|0：空闲，1：任务占用中。
 time_apply|long|申请时间|毫秒时间戳
 time_expire|long|有效期|单位：秒。-1：永久有效。
+**robotTotal**|Long|话术总量|进行话术分页时建议单独查询话术
 **robots**|object[]|话术|
 robot_id|string|话术编号|
 robot_name|string|话术名称|
