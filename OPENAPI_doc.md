@@ -854,6 +854,8 @@ success
 business_id||string|企业id|
 app_id||string|应用id|
 robot_id||string|话术话术id|
+agent_id||string|负责人id|
+task_id||string|任务id|
 task_data_id||string|外呼任务id|
 call_relation_id||string|呼入关联id|
 call_uuid|是|string|通话UUID|
@@ -867,6 +869,7 @@ role||string|节点角色|robot话术customer客户
 node_id||string|节点id|
 node_name||string|节点名称|
 node_type||string|节点类型|
+content_id||string|话术节点设置ID|
 label||string|节点标签|
 tag_name||string|意向|
 tag_desc||string|意向说明|
@@ -875,6 +878,10 @@ text_man||string|用户输入内容|
 question_id||String|问题uuid|
 time_start||long|节点开始时间戳|
 time_speaking||long|用户说话时间戳|
+userSpeakingCompletedTime||long|节点用户说话结束时间戳（可能为空）|
+playSpeakingTime||long|节点机器人说话开始时间戳|
+playCompletedTime||long|节点机器人说话结束时间戳|
+
 **hits**||array|命中|
 hit||string|命中内容|
 pick||boolean|是否选中|
@@ -903,6 +910,12 @@ NormalNode | 普通交互节点
     "app_id":"123",
     "robot_id":"10527",
     "call_uuid":"f3b13ebc-6394-11e8-907d-ebcc4d560c04",
+    "task_id":"3457986492696704",
+    "agent_id":"891",
+    "task_data_id":"346252615123869699",
+    "call_relation_id":"346252615123869699",
+    "time_begin":1618795847425,
+    "time_end":1618795868298,
     "dialog":[
         {
             "seq":"3",
@@ -918,6 +931,12 @@ NormalNode | 普通交互节点
             "role":"customer",
             "node_id":"word_node_70601",
             "node_name":"开头语",
+            "node_type": "NormalNode",
+            "content_id": "a75f4j9uN32d440b13ac08m",
+            "time_start": 1618795849743,
+            "userSpeakingCompletedTime": 1618795858958,
+            "playSpeakingTime": 1618795858958,
+            "playCompletedTime": 1618795858958,
             "text_robot":"喂，您好！",
             "text_man":"",
             "question_id":"",
