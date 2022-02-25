@@ -3,7 +3,7 @@
 ----------
 
 
-### 目录 
+### 目录
 Part1：平台能力调用
 应用方请求平台，调用对应能力。
 
@@ -36,8 +36,8 @@ Part3：业务能力对接
 
 yeta开放平台的所有json响应消息采用标准对象定义，全部具有code、message和result三个属性。
 
-名称|类型|说明 
----|:-:|:-: 
+名称|类型|说明
+---|:-:|:-:
 code|int|返回码。0：成功，其它值表示失败，具体参考“附录：返回码参照”
 message| string|返回码描述
 result|object|返回结果集。
@@ -48,7 +48,7 @@ result|object|返回结果集。
 # 一、获取token
 功能：获取授权令牌。请求本接口之外的其它接口时，必须在接口url中通过token参数携带令牌。令牌有效期默认1小时，需要在过期前重新获取。
 
-接口地址：https://www.xfyeta.com/openapi/oauth/v1/token  
+接口地址：https://www.xfyeta.com/openapi/oauth/v1/token
 
 ## 请求参数说明
 名称|必填|类型| 说明
@@ -96,7 +96,7 @@ time_expire|是|long|有效期|单位：秒。默认3600。
 # 二、查询配置
 功能：查询企业下的各项资源及配置信息
 
-接口地址：https://www.xfyeta.com/openapi/config/v1/query?token=08236d0aeeee4d5b566db5f4adc41a63  
+接口地址：https://www.xfyeta.com/openapi/config/v1/query?token=08236d0aeeee4d5b566db5f4adc41a63
 
 
 ## 请求参数说明
@@ -167,6 +167,16 @@ pageIndex|否|int|页码
                "voice_code": "60020",
                "voice_name": "春春"
            }
+       ],
+       "deletedRobots":[
+            {
+               "robot_id": "111111",
+               "robot_name": "金融",
+               "type": 1,
+               "deleted": 1,
+               "time_create": 1527321492000,
+               "time_update": 1527325092000
+           }
        ]
     }  
     
@@ -225,7 +235,7 @@ voice_name|voice_code|性别
 功能：面向便捷外呼业务场景，提交号码数据同时指定线路和机器人话术，直接发起外呼。直接外呼的号码数据将被提交到应用默认对应的长期任务下。如果号码数据中存在不合规记录（例如敏感号码、非手机号等）将会整批失败。
 
 
-接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/callout?token=08236d0aeeee4d5b566db5f4adc41a63  
+接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/callout?token=08236d0aeeee4d5b566db5f4adc41a63
 
 
 ## 请求参数说明
@@ -233,7 +243,7 @@ voice_name|voice_code|性别
 ---|:-:|:-:|:-:|:-:
 robot_id|是|string|话术编号|
 line_num|是|string|线路号码|
-call_column|是|string[]|外呼数据列| 
+call_column|是|string[]|外呼数据列|
 call_list|是|string[][]|外呼数据行|单次上限50条
 voice_code|否|string|发音人编码|
 robot_speed|否|number|发音人语速|取值范围[-500,500],0为原速，数值大则语速快，对应于0.5~1.5倍线性关系
@@ -259,7 +269,7 @@ robot_speed|否|number|发音人语速|取值范围[-500,500],0为原速，数�
         "task_data_ids": [130,131]
     }     
 }
-~~~ 
+~~~
 
 ## result返回结果集说明
 名称| 类型|说明
@@ -274,7 +284,7 @@ task_data_ids|long[]|外呼数据行对应的任务数据编号，用于结果�
 # 四、创建外呼任务
 功能：面向需要灵活管控的业务场景。可以按照不同的业务维度创建多组任务、分批多次向指定任务提交号码数据，可以对外呼任务进行启动、暂停、删除等控制操作。
 
-接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/create?token=08236d0aeeee4d5b566db5f4adc41a63  
+接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/create?token=08236d0aeeee4d5b566db5f4adc41a63
 
 
 ## 请求参数说明
@@ -315,7 +325,7 @@ trubo_mode|否|boolean|高性能模式|默认false
        "task_id": "129"
     }     
 }
-~~~ 
+~~~
 
 
 ## result返回结果集说明
@@ -330,7 +340,7 @@ task_id|string|任务Id。用于任务数据提交和管理。
 # 五、提交任务数据
 功能：向指定任务提交号码数据，可以分多批次提交。
 
-接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/insert?token=08236d0aeeee4d5b566db5f4adc41a63  
+接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/insert?token=08236d0aeeee4d5b566db5f4adc41a63
 
 
 ## 请求参数说明
@@ -350,7 +360,7 @@ call_list|是|string[][]|数据行|单次上限50条
          ["19900000002","t2","t3"]
      ]
 }
-~~~  
+~~~
 
 ### 响应示例
 
@@ -378,7 +388,7 @@ task_data_ids|long[]|外呼数据行对应的任务数据编号，用于结果�
 # 六、启动外呼任务
 功能：启动外呼任务，任务将按照预设的开始时间和工作时段进行外呼。 任务启动之后，将不能再提交号码数据。
 
-接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/start?token=08236d0aeeee4d5b566db5f4adc41a63   
+接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/start?token=08236d0aeeee4d5b566db5f4adc41a63
 
 
 ## 请求参数说明
@@ -401,7 +411,7 @@ task_id|是|string|任务id
     "message": "ok",  
     "result": {}     
 }
-~~~ 
+~~~
 
 ## result返回结果集说明
 无。通过code响应码表示是否成功。
@@ -410,7 +420,7 @@ task_id|是|string|任务id
 # 七、暂停外呼任务
 功能：暂时停止任务呼叫。可以通过启动外呼任务接口恢复任务呼叫。
 
-接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/pause?token=08236d0aeeee4d5b566db5f4adc41a63   
+接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/pause?token=08236d0aeeee4d5b566db5f4adc41a63
 
 ## 请求参数说明
 名称| 必填|类型|说明
@@ -432,7 +442,7 @@ task_id|是|string|任务id
     "message": "ok",  
     "result": {}     
 }
-~~~ 
+~~~
 
 ## result返回结果集说明
 无。通过code响应码表示是否成功。
@@ -442,7 +452,7 @@ task_id|是|string|任务id
 
 # 八、删除外呼任务
 功能：对外呼任务进行强制停止并删除，删除后不能再次启动。
-接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/delete?token=08236d0aeeee4d5b566db5f4adc41a63   
+接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/delete?token=08236d0aeeee4d5b566db5f4adc41a63
 
 
 ## 请求参数说明
@@ -464,7 +474,7 @@ task_id|是|string|任务id
     "message": "ok",  
     "result": {}     
 }
-~~~ 
+~~~
 
 ## result返回结果集说明
 无。通过code响应码表示是否成功。
@@ -474,7 +484,7 @@ task_id|是|string|任务id
 # 九、查询任务
 功能：查询任务信息和任务列表。
 
-接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/query?token=08236d0aeeee4d5b566db5f4adc41a63  
+接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/query?token=08236d0aeeee4d5b566db5f4adc41a63
 
 ## 请求参数说明
 名称| 必填|类型|说明|备注
@@ -538,7 +548,7 @@ show_remaining|否|boolean|任务运行时,该值为正在处理的数量|
         ]
     }
 }
-~~~ 
+~~~
 
 
 ## result返回结果集说明
@@ -575,7 +585,7 @@ intention_push|string|否(仅限普通任务)|预设推送意向度门限
 # 十、查询推送失败记录
 功能：查询推送失败记录文件清单，提供7日内失败记录文件下载，不含当日。
 
-接口地址：https://www.xfyeta.com/openapi/download/v1/push/failed?token=08236d0aeeee4d5b566db5f4adc41a63  
+接口地址：https://www.xfyeta.com/openapi/download/v1/push/failed?token=08236d0aeeee4d5b566db5f4adc41a63
 
 ## 请求参数说明
 名称| 必填|类型|说明|备注
@@ -587,7 +597,7 @@ date|否|string|日期|格式如yyyy-MM-dd
 {
   "date":"2018-12-10"
 }
-~~~  
+~~~
 
 ### 响应示例
 
@@ -637,9 +647,9 @@ timestamp|long|消息创建时间戳
 返回码|说明  
 ---|:-:
 0 | ok（成功）
-## 服务级错误码参照  
+## 服务级错误码参照
 错误码|说明  
----|:-- 
+---|:--
 200101|账号或密码错误
 
 ## 系统级错误码参照
@@ -675,6 +685,283 @@ timestamp|long|消息创建时间戳
 2|002|01
 服务级错误（1为系统级错误）|服务模块代码|具体错误代码
 
+# 十一、获取话术结构
+功能：获取话术结构。
+
+接口地址：  https://www.xfyeta.com/openapi/brain/v1/buildSpeechStruct?token=08236d0aeeee4d5b566db5f4adc41a63
+
+## 请求参数说明
+
+| 字段名称      | 字段类型 | 字段说明                           |
+| ------------- | -------- | ---------------------------------- |
+| id            | string   | 话术组ID（话术为动态话术该值必传） |
+| speechSkillId | string   | 话术ID（必传）                     |
+
+
+
+
+### 请求示例
+~~~json
+{
+    "id":"1937",
+    "speechSkillId":"3128"
+}
+~~~
+
+### 响应示例
+
+~~~json
+{
+    "code": 0,
+    "message": "ok",
+    "result": {
+        "rows": [
+            {
+                "speechStruct": [
+                    {
+                        "businessId": "41",
+                        "nextNodeId": "words_node_f6a2e60a-e",
+                        "nextNodeName": "机器人节点1011",
+                        "nextSpeechNodeId": null,
+                        "nodeAssistContent1": "你好辅助话术1",
+                        "nodeAssistContent1UrlList": [],
+                        "nodeAssistContent2": "你好辅助话术2",
+                        "nodeAssistContent2UrlList": [],
+                        "nodeContent": "你好主话术",
+                        "nodeContentUrlList": [],
+                        "nodeId": "words_start_47dc4c20-d",
+                        "nodeName": "机器人节点001",
+                        "skillSpeechId": "3128",
+                        "skillSpeechName": "测试测试13212",
+                        "slotAssistContent": null,
+                        "speakId": "judge_node_1aa5ff3c-a",
+                        "speakKeyword": "哈哈",
+                        "speakName": "客户节点101",
+                        "speechGroupId": "1937",
+                        "speechGroupName": "主流程"
+                    },
+                    {
+                        "businessId": "41",
+                        "nextNodeId": "",
+                        "nextNodeName": "",
+                        "nextSpeechNodeId": null,
+                        "nodeAssistContent1": "",
+                        "nodeAssistContent1UrlList": [],
+                        "nodeAssistContent2": "",
+                        "nodeAssistContent2UrlList": [],
+                        "nodeContent": "呵呵呵",
+                        "nodeContentUrlList": [
+                            "/robotvoice/1937-words_node_f6a2e60a-e-1640760956585.wav"
+                        ],
+                        "nodeId": "words_node_f6a2e60a-e",
+                        "nodeName": "机器人节点1011",
+                        "skillSpeechId": "3128",
+                        "skillSpeechName": "测试测试13212",
+                        "slotAssistContent": null,
+                        "speakId": "judge_node_d80846a3-a",
+                        "speakKeyword": "1",
+                        "speakName": "客户节点10111",
+                        "speechGroupId": "1937",
+                        "speechGroupName": "主流程"
+                    },
+                    {
+                        "businessId": "41",
+                        "nextNodeId": "",
+                        "nextNodeName": "",
+                        "nextSpeechNodeId": null,
+                        "nodeAssistContent1": "",
+                        "nodeAssistContent1UrlList": [],
+                        "nodeAssistContent2": "",
+                        "nodeAssistContent2UrlList": [],
+                        "nodeContent": "呵呵呵",
+                        "nodeContentUrlList": [
+                            "/robotvoice/1937-words_node_f6a2e60a-e-1640760956585.wav"
+                        ],
+                        "nodeId": "words_node_f6a2e60a-e",
+                        "nodeName": "机器人节点1011",
+                        "skillSpeechId": "3128",
+                        "skillSpeechName": "测试测试13212",
+                        "slotAssistContent": null,
+                        "speakId": "judge_node_2232bcaa-6",
+                        "speakKeyword": "2",
+                        "speakName": "客户节点10112",
+                        "speechGroupId": "1937",
+                        "speechGroupName": "主流程"
+                    },
+                    {
+                        "businessId": "41",
+                        "nextNodeId": "",
+                        "nextNodeName": "",
+                        "nextSpeechNodeId": null,
+                        "nodeAssistContent1": "",
+                        "nodeAssistContent1UrlList": [],
+                        "nodeAssistContent2": "",
+                        "nodeAssistContent2UrlList": [],
+                        "nodeContent": "呵呵呵",
+                        "nodeContentUrlList": [
+                            "/robotvoice/1937-words_node_f6a2e60a-e-1640760956585.wav"
+                        ],
+                        "nodeId": "words_node_f6a2e60a-e",
+                        "nodeName": "机器人节点1011",
+                        "skillSpeechId": "3128",
+                        "skillSpeechName": "测试测试13212",
+                        "slotAssistContent": null,
+                        "speakId": "judge_node_8a836027-a",
+                        "speakKeyword": "3",
+                        "speakName": "客户节点10113",
+                        "speechGroupId": "1937",
+                        "speechGroupName": "主流程"
+                    },
+                    {
+                        "businessId": "41",
+                        "nextNodeId": "",
+                        "nextNodeName": "",
+                        "nextSpeechNodeId": null,
+                        "nodeAssistContent1": "",
+                        "nodeAssistContent1UrlList": [],
+                        "nodeAssistContent2": "",
+                        "nodeAssistContent2UrlList": [],
+                        "nodeContent": "呵呵呵",
+                        "nodeContentUrlList": [
+                            "/robotvoice/1937-words_node_f6a2e60a-e-1640760956585.wav"
+                        ],
+                        "nodeId": "words_node_f6a2e60a-e",
+                        "nodeName": "机器人节点1011",
+                        "skillSpeechId": "3128",
+                        "skillSpeechName": "测试测试13212",
+                        "slotAssistContent": null,
+                        "speakId": "judge_node_75a88be4-1",
+                        "speakKeyword": "4",
+                        "speakName": "客户节点10114",
+                        "speechGroupId": "1937",
+                        "speechGroupName": "主流程"
+                    },
+                    {
+                        "businessId": "41",
+                        "nextNodeId": "",
+                        "nextNodeName": "",
+                        "nextSpeechNodeId": "1938",
+                        "nodeAssistContent1": "你好辅助话术1",
+                        "nodeAssistContent1UrlList": [],
+                        "nodeAssistContent2": "你好辅助话术2",
+                        "nodeAssistContent2UrlList": [],
+                        "nodeContent": "你好主话术",
+                        "nodeContentUrlList": [],
+                        "nodeId": "words_start_47dc4c20-d",
+                        "nodeName": "机器人节点001",
+                        "skillSpeechId": "3128",
+                        "skillSpeechName": "测试测试13212",
+                        "slotAssistContent": null,
+                        "speakId": "judge_node_f8441d2c-d",
+                        "speakKeyword": "哈哈哈哈",
+                        "speakName": "客户节点102",
+                        "speechGroupId": "1937",
+                        "speechGroupName": "主流程"
+                    },
+                    {
+                        "businessId": "41",
+                        "nextNodeId": "words_node_69a107d8-b",
+                        "nextNodeName": "机器人节点1031",
+                        "nextSpeechNodeId": null,
+                        "nodeAssistContent1": "你好辅助话术1",
+                        "nodeAssistContent1UrlList": [],
+                        "nodeAssistContent2": "你好辅助话术2",
+                        "nodeAssistContent2UrlList": [],
+                        "nodeContent": "你好主话术",
+                        "nodeContentUrlList": [],
+                        "nodeId": "words_start_47dc4c20-d",
+                        "nodeName": "机器人节点001",
+                        "skillSpeechId": "3128",
+                        "skillSpeechName": "测试测试13212",
+                        "slotAssistContent": null,
+                        "speakId": "judge_node_6f13c305-7",
+                        "speakKeyword": "好的",
+                        "speakName": "客户节点103",
+                        "speechGroupId": "1937",
+                        "speechGroupName": "主流程"
+                    },
+                    {
+                        "businessId": "41",
+                        "nextNodeId": null,
+                        "nextNodeName": null,
+                        "nextSpeechNodeId": null,
+                        "nodeAssistContent1": "",
+                        "nodeAssistContent1UrlList": null,
+                        "nodeAssistContent2": "",
+                        "nodeAssistContent2UrlList": null,
+                        "nodeContent": "可以的",
+                        "nodeContentUrlList": null,
+                        "nodeId": "words_node_69a107d8-b",
+                        "nodeName": "机器人节点1031",
+                        "skillSpeechId": "3128",
+                        "skillSpeechName": "测试测试13212",
+                        "slotAssistContent": null,
+                        "speakId": null,
+                        "speakKeyword": null,
+                        "speakName": null,
+                        "speechGroupId": "1937",
+                        "speechGroupName": "主流程"
+                    },
+                    {
+                        "businessId": "41",
+                        "nextNodeId": "",
+                        "nextNodeName": "",
+                        "nextSpeechNodeId": "1938",
+                        "nodeAssistContent1": "你好辅助话术1",
+                        "nodeAssistContent1UrlList": [],
+                        "nodeAssistContent2": "你好辅助话术2",
+                        "nodeAssistContent2UrlList": [],
+                        "nodeContent": "你好主话术",
+                        "nodeContentUrlList": [],
+                        "nodeId": "words_start_47dc4c20-d",
+                        "nodeName": "机器人节点001",
+                        "skillSpeechId": "3128",
+                        "skillSpeechName": "测试测试13212",
+                        "slotAssistContent": null,
+                        "speakId": "judge_node_dba9e252-c",
+                        "speakKeyword": "1212",
+                        "speakName": "客户节点104",
+                        "speechGroupId": "1937",
+                        "speechGroupName": "主流程"
+                    }
+                ],
+                "startNodeId": "words_start_47dc4c20-d",
+                "type":2
+            }
+        ]
+    }
+}
+~~~
+
+
+## result返回结果集说明
+
+| 字段名称                  | 字段类型 | 字段说明                           |
+| ------------------------- | -------- | ---------------------------------- |
+| startNodeId               | string   | 首节点                             |
+| type                      | Integer  | 话术类型，1：普通话术，2：动态话术 |
+| businessId                | string   | 企业ID                             |
+| skillSpeechId             | string   | 话术ID                             |
+| skillSpeechName           | string   | 话术名称                           |
+| speechGroupId             | string   | 话术组ID                           |
+| speechGroupName           | string   | 话术组名称                         |
+| nodeId                    | string   | 机器人节点                         |
+| nodeName                  | string   | 机器人节点名称                     |
+| nodeType                  | string   | 机器人节点类型(详见附录)           |
+| nodeContent               | string   | 机器人节点主话术                   |
+| nodeContentUrlList        | string   | 机器人节点主话术录音地址           |
+| nodeAssistContent1        | string   | 机器人辅助话术1                    |
+| nodeAssistContent1UrlList | string   | 机器人辅助话术1录音地址            |
+| nodeAssistContent2        | string   | 机器人辅助话术2                    |
+| nodeAssistContent2UrlList | string   | 机器人辅助话术2录音地址            |
+| slotAssistContent         | string   | 提槽辅助话术                       |
+| speakId                   | string   | 用户节点ID                         |
+| speakName                 | string   | 用户节点名称                       |
+| speakType                 | string   | 用户节点类型(详见附录)             |
+| speakKeyword              | string   | 用户节点关键词                     |
+| nextNodeId                | string   | 用户节点下一机器人节点ID           |
+| nextNodeName              | string   | 用户节点下一机器人节点名称         |
+| nextSpeechNodeId          | string   | 用户节点下一话术组ID               |
 
 
 ----------
@@ -715,7 +1002,7 @@ yeta开放平台将会在每通电话结束后，主动向应用方URL进行HTTP
 
 接口模块名称：receiveCallRecord
 
-接口地址：[企业预先配置url]  
+接口地址：[企业预先配置url]
 
 注意：为了满足应用方对即时性的要求，平台对外呼的话单可能会进行两次推送。两次推送分别为基本属性话单消息和外呼属性话单消息，外呼话单消息中包含基本话单消息的所有字段项，两种消息可以通过是否包含task_row_index属性进行区分。受限于网络等因素，两次话单推送的顺序不做保证。
 可以通过接听时间戳time_answer判定是否接通。
@@ -734,7 +1021,7 @@ time_answer|是|long|接听时间戳|unix_time
 time_hangup|是|long|挂断时间戳|unix_time
 duration_ring|是|int|拨号振铃时长|秒
 duration_call|是|int|通话时长|秒
-call_relation_id|仅呼入|string|关联ID|业务侧的唯一标识 
+call_relation_id|仅呼入|string|关联ID|业务侧的唯一标识
 task_id|仅呼出|string|外呼任务id|
 task_data_id|仅呼出|string|外呼任务id|
 time_dial|仅呼出|long|拨号时间戳|unix_time
@@ -803,7 +1090,7 @@ success
 
 # 二、录音推送
 接口模块名称：receiveVoice  
-接口地址：[企业预先配置url]  
+接口地址：[企业预先配置url]
 
 
 ## 请求参数说明
@@ -845,7 +1132,7 @@ success
 # 三、会话推送
 
 接口模块名称：receiveDialog  
-接口地址：[企业预先配置url]  
+接口地址：[企业预先配置url]
 
 
 ## 请求参数说明
@@ -994,7 +1281,7 @@ yeta开放平台将会在每通电话开始时，主动向应用方URL进行HTTP
 yeta开放平台在电话呼入时主动请求应用方接口
 
 接口模块名称：getDialogContext  
-接口地址：[企业预先配置url]  
+接口地址：[企业预先配置url]
 
 
 ## 请求参数说明
