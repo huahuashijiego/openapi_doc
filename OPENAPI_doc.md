@@ -212,7 +212,14 @@ url_module|string|接口模块|详见Part2和Part3。
 **voices**|object[]|发音人|
 voice_code|string|发音人编码|
 voice_name|string|发音人名称|
-
+**deletedRobots**|object[]|话术|
+robot_id|string|话术编号|
+robot_name|string|话术名称|
+status|int|话术状态|1：审核中，2：未通过，3：待发布，4：已发布。
+type|int|话术类型|1：普通话术，2：动态话术。
+deleted|int|删除标记|0：未删除，1：已删除。
+time_create|long|创建时间|毫秒时间戳
+time_update|long|更新时间|毫秒时间戳
 
 
 ### 常用发音人清单
