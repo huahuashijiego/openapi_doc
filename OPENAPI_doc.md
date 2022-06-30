@@ -287,6 +287,7 @@ total|int|号码总数
 task_data_ids|long[]|外呼数据行对应的任务数据编号，用于结果推送数据关联。
 
 ## 创建任务池
+接口地址：https://www.xfyeta.com/openapi/outbound/v1/task/create-pool?token=08236d0aeeee4d5b566db5f4adc41a63
 ## 请求参数说明
 名称| 必填|类型|说明|备注
 ---|:-:|:-:|:-:|:-:
